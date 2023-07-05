@@ -376,6 +376,13 @@ else ifeq ($(platform), libnx)
 # Emscripten
 else ifeq ($(platform), emscripten)
 	TARGET := $(TARGET_NAME)_libretro_$(platform).bc
+	HAVE_THREADS = 0
+	ARCH_IS_LINUX = 0
+
+	FLAGS += -DEMSCRIPTEN
+	FLAGS += -msimd128 -ftree-vectorize
+
+	HAVE_SSE = 0
 	STATIC_LINKING = 1
 
 # GCW0
