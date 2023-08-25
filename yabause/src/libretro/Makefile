@@ -24,6 +24,8 @@ USE_SCSP2 = 0
 # debug tools, unneeded ?
 ENABLE_TSUNAMI = 0
 
+EMULATORJS_THREADS ?= 0
+
 SPACE :=
 SPACE := $(SPACE) $(SPACE)
 BACKSLASH :=
@@ -376,7 +378,7 @@ else ifeq ($(platform), libnx)
 # Emscripten
 else ifeq ($(platform), emscripten)
 	TARGET := $(TARGET_NAME)_libretro_$(platform).bc
-	HAVE_THREADS = 0
+	
 	ARCH_IS_LINUX = 0
 
 	FLAGS += -DEMSCRIPTEN
@@ -384,6 +386,13 @@ else ifeq ($(platform), emscripten)
 
 	HAVE_SSE = 0
 	STATIC_LINKING = 1
+	
+	ifeq ($(EMULATORJS_THREADS), 1)
+	   LDFLAGS += -pthread
+	   CFLAGS += -pthread
+	else
+	   HAVE_THREADS = 0
+	endif
 
 # GCW0
 else ifeq ($(platform), gcw0)
