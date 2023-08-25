@@ -390,6 +390,7 @@ else ifeq ($(platform), emscripten)
 	ifeq ($(EMULATORJS_THREADS), 1)
 	   LDFLAGS += -pthread
 	   CFLAGS += -pthread
+           CXXFLAGS += -pthread
 	else
 	   HAVE_THREADS = 0
 	endif
