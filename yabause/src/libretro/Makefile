@@ -507,7 +507,7 @@ else
 endif
 
 # webOS
-ifneq (,$(findstring webos,$(CROSS_COMPILE)$(findstring starfish,$(CROSS_COMPILE))))
+ifneq (,$(or $(findstring webos,$(CROSS_COMPILE)),$(findstring starfish,$(CROSS_COMPILE))))
 	HAVE_SSE = 0
 endif
 
