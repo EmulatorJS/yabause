@@ -523,6 +523,11 @@ else
 
 endif
 
+# webOS
+ifneq (,$(or $(findstring webos,$(CROSS_COMPILE)),$(findstring starfish,$(CROSS_COMPILE))))
+	HAVE_SSE = 0
+endif
+
 include Makefile.common
 
 ifeq ($(HAVE_SYS_PARAM_H), 1)
