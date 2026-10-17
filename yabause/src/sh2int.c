@@ -186,7 +186,7 @@ static u32 FASTCALL FetchHWram(SH2_struct *sh, u32 addr)
 }
 
 extern u8 * Vdp1Ram;
-static u32 FASTCALL FetchVram(u32 addr)
+static u32 FASTCALL FetchVram(UNUSED SH2_struct *sh, u32 addr)
 {
   addr &= 0x07FFFF;
   return T1ReadWord(Vdp1Ram, addr);
@@ -195,7 +195,7 @@ static u32 FASTCALL FetchVram(u32 addr)
 
 //////////////////////////////////////////////////////////////////////////////
 
-static u32 FASTCALL FetchInvalid(UNUSED u32 addr)
+static u32 FASTCALL FetchInvalid(UNUSED SH2_struct *sh, UNUSED u32 addr)
 {
    return 0xFFFF;
 }
